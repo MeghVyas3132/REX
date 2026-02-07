@@ -1,0 +1,57 @@
+{
+  "name": "Simple WhatsApp Test Workflow",
+  "description": "A simple workflow to test WhatsApp node - sends a text message",
+  "nodes": [
+    {
+      "id": "manual-trigger-1",
+      "type": "manual-trigger",
+      "name": "Manual Trigger",
+      "position": { "x": 100, "y": 200 },
+      "data": {
+        "config": {
+          "buttonText": "Send WhatsApp Message",
+          "inputData": {
+            "recipientPhoneNumber": "+1234567890",
+            "message": "Hello! This is a test message from the workflow."
+          }
+        }
+      }
+    },
+    {
+      "id": "whatsapp-1",
+      "type": "whatsapp",
+      "name": "Send WhatsApp Message",
+      "position": { "x": 400, "y": 200 },
+      "data": {
+        "config": {
+          "resource": "message",
+          "operation": "send",
+          "messageType": "text",
+          "accessToken": "YOUR_WHATSAPP_ACCESS_TOKEN",
+          "phoneNumberId": "YOUR_PHONE_NUMBER_ID",
+          "recipientPhoneNumber": "{{ $json.recipientPhoneNumber }}",
+          "textBody": "{{ $json.message }}"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "manual-trigger-1",
+      "target": "whatsapp-1",
+      "type": "default",
+      "data": {
+        "mappings": {
+          "recipientPhoneNumber": "{{ $json.recipientPhoneNumber }}",
+          "textBody": "{{ $json.message }}"
+        }
+      }
+    }
+  ],
+  "settings": {
+    "executionMode": "sequential",
+    "timeout": 30000
+  }
+}
+

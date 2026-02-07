@@ -1,0 +1,1753 @@
+{
+  "summary": {
+    "totalNodes": 121,
+    "nodesWithIssues": 99,
+    "totalIssues": 209,
+    "bySeverity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 79,
+      "LOW": 130
+    }
+  },
+  "results": [
+    {
+      "file": "agent/context.node.ts",
+      "category": "agent",
+      "nodeName": "context",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "agent/decision.node.ts",
+      "category": "agent",
+      "nodeName": "decision",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "agent/goal.node.ts",
+      "category": "agent",
+      "nodeName": "goal",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "agent/reasoning.node.ts",
+      "category": "agent",
+      "nodeName": "reasoning",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "agent/state.node.ts",
+      "category": "agent",
+      "nodeName": "state",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "ai/audio-processor.node.ts",
+      "category": "ai",
+      "nodeName": "audio-processor",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"audio-processor\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/code-generator.node.ts",
+      "category": "ai",
+      "nodeName": "code-generator",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"code-generator\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/data-analyzer.node.ts",
+      "category": "ai",
+      "nodeName": "data-analyzer",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-analyzer\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/document-processor.node.ts",
+      "category": "ai",
+      "nodeName": "document-processor",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"document-processor\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/email-analyzer.node.ts",
+      "category": "ai",
+      "nodeName": "email-analyzer",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"email-analyzer\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/huggingface.node.ts",
+      "category": "ai",
+      "nodeName": "huggingface",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "ai/image-generator.node.ts",
+      "category": "ai",
+      "nodeName": "image-generator",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"image-generator\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/openai-enhanced.node.ts",
+      "category": "ai",
+      "nodeName": "openai-enhanced",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"openai-enhanced\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/speech-to-text.node.ts",
+      "category": "ai",
+      "nodeName": "speech-to-text",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"speech-to-text\" may not match naming convention"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "ai/text-analyzer.node.ts",
+      "category": "ai",
+      "nodeName": "text-analyzer",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"text-analyzer\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "ai/text-to-speech.node.ts",
+      "category": "ai",
+      "nodeName": "text-to-speech",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"text-to-speech\" may not match naming convention"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "ai/vector-search-enhanced.node.ts",
+      "category": "ai",
+      "nodeName": "vector-search-enhanced",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"vector-search-enhanced\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "ai/vector-search.node.ts",
+      "category": "ai",
+      "nodeName": "vector-search",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"vector-search\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "analytics/analytics.node.ts",
+      "category": "analytics",
+      "nodeName": "analytics",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "analytics/google-analytics.node.ts",
+      "category": "analytics",
+      "nodeName": "google-analytics",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-analytics\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/aws-lambda-real.node.ts",
+      "category": "cloud",
+      "nodeName": "aws-lambda-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"aws-lambda-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/aws-lambda.node.ts",
+      "category": "cloud",
+      "nodeName": "aws-lambda",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"aws-lambda\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/aws-s3-real.node.ts",
+      "category": "cloud",
+      "nodeName": "aws-s3-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"aws-s3-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/aws-s3.node.ts",
+      "category": "cloud",
+      "nodeName": "aws-s3",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"aws-s3\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/azure-blob-real.node.ts",
+      "category": "cloud",
+      "nodeName": "azure-blob-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"azure-blob-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/azure-blob.node.ts",
+      "category": "cloud",
+      "nodeName": "azure-blob",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"azure-blob\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/cloudwatch.node.ts",
+      "category": "cloud",
+      "nodeName": "cloudwatch",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/docker-real.node.ts",
+      "category": "cloud",
+      "nodeName": "docker-real",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"docker\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/docker.node.ts",
+      "category": "cloud",
+      "nodeName": "docker",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/google-cloud-storage-real.node.ts",
+      "category": "cloud",
+      "nodeName": "google-cloud-storage-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-cloud-storage-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/google-cloud-storage.node.ts",
+      "category": "cloud",
+      "nodeName": "google-cloud-storage",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-cloud-storage\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/kubernetes-real.node.ts",
+      "category": "cloud",
+      "nodeName": "kubernetes-real",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"kubernetes\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "cloud/kubernetes.node.ts",
+      "category": "cloud",
+      "nodeName": "kubernetes",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "cloud/terraform.node.ts",
+      "category": "cloud",
+      "nodeName": "terraform",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        },
+        {
+          "type": "INPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have inputs array"
+        },
+        {
+          "type": "OUTPUTS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have outputs array"
+        }
+      ]
+    },
+    {
+      "file": "communication/discord.node.ts",
+      "category": "communication",
+      "nodeName": "discord",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "communication/email.node.ts",
+      "category": "communication",
+      "nodeName": "email",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "communication/linkedin-message.node.ts",
+      "category": "communication",
+      "nodeName": "linkedin-message",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"linkedin-message\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "communication/microsoft-teams.node.ts",
+      "category": "communication",
+      "nodeName": "microsoft-teams",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"microsoft-teams\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "communication/slack.node.ts",
+      "category": "communication",
+      "nodeName": "slack",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "communication/telegram.node.ts",
+      "category": "communication",
+      "nodeName": "telegram",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "communication/twitter-dm.node.ts",
+      "category": "communication",
+      "nodeName": "twitter-dm",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"twitter-dm\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "communication/whatsapp.node.ts",
+      "category": "communication",
+      "nodeName": "whatsapp",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "communication/zoom.node.ts",
+      "category": "communication",
+      "nodeName": "zoom",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        }
+      ]
+    },
+    {
+      "file": "core/audit-log.node.ts",
+      "category": "core",
+      "nodeName": "audit-log",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"audit-log\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/date-time.node.ts",
+      "category": "core",
+      "nodeName": "date-time",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"date-time\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/delay.node.ts",
+      "category": "core",
+      "nodeName": "delay",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "core/fetch-email-data.node.ts",
+      "category": "core",
+      "nodeName": "fetch-email-data",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"fetch-email-data\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/http-request-enhanced.node.ts",
+      "category": "core",
+      "nodeName": "http-request-enhanced",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"http-request-enhanced\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/http-request.node.ts",
+      "category": "core",
+      "nodeName": "http-request",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"http-request\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/json-transform.node.ts",
+      "category": "core",
+      "nodeName": "json-transform",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"json-transform\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/signature-validation.node.ts",
+      "category": "core",
+      "nodeName": "signature-validation",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"signature-validation\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "core/webhook-trigger.node.ts",
+      "category": "core",
+      "nodeName": "webhook-trigger",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"webhook-trigger\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "data/database.node.ts",
+      "category": "data",
+      "nodeName": "database",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "data/mongodb-real.node.ts",
+      "category": "data",
+      "nodeName": "mongodb-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"mongodb-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "data/mysql-real.node.ts",
+      "category": "data",
+      "nodeName": "mysql-real",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"mysql\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "data/mysql.node.ts",
+      "category": "data",
+      "nodeName": "mysql",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "data/postgresql-real.node.ts",
+      "category": "data",
+      "nodeName": "postgresql-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"postgresql-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "data/postgresql.node.ts",
+      "category": "data",
+      "nodeName": "postgresql",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "development/github.node.ts",
+      "category": "development",
+      "nodeName": "github",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "development/rest-api.node.ts",
+      "category": "development",
+      "nodeName": "rest-api",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"rest-api\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "development/webhook-call.node.ts",
+      "category": "development",
+      "nodeName": "webhook-call",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"webhook-call\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/data-cleaning.node.ts",
+      "category": "file-processing",
+      "nodeName": "data-cleaning",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-cleaning\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/data-transformation.node.ts",
+      "category": "file-processing",
+      "nodeName": "data-transformation",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-transformation\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/file-export.node.ts",
+      "category": "file-processing",
+      "nodeName": "file-export",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-export\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/file-extraction.node.ts",
+      "category": "file-processing",
+      "nodeName": "file-extraction",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-extraction\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/file-upload.node.ts",
+      "category": "file-processing",
+      "nodeName": "file-upload",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-upload\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/file-validation.node.ts",
+      "category": "file-processing",
+      "nodeName": "file-validation",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-validation\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "file-processing/quality-assurance.node.ts",
+      "category": "file-processing",
+      "nodeName": "quality-assurance",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"quality-assurance\" may not match naming convention"
+        },
+        {
+          "type": "PARAMETERS",
+          "severity": "MEDIUM",
+          "message": "Node definition may not have parameters array"
+        }
+      ]
+    },
+    {
+      "file": "finance/stripe.node.ts",
+      "category": "finance",
+      "nodeName": "stripe",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "integrations/email.node.ts",
+      "category": "integrations",
+      "nodeName": "email",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "integrations/gmail.node.ts",
+      "category": "integrations",
+      "nodeName": "gmail",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "integrations/google-drive-real.node.ts",
+      "category": "integrations",
+      "nodeName": "google-drive-real",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-drive\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "integrations/google-drive.node.ts",
+      "category": "integrations",
+      "nodeName": "google-drive",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-drive\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "llm/anthropic.node.ts",
+      "category": "llm",
+      "nodeName": "anthropic",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "llm/claude-real.node.ts",
+      "category": "llm",
+      "nodeName": "claude-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"claude-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "llm/claude.node.ts",
+      "category": "llm",
+      "nodeName": "claude",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "llm/gemini-real.node.ts",
+      "category": "llm",
+      "nodeName": "gemini-real",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"gemini-real\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "llm/gemini.node.ts",
+      "category": "llm",
+      "nodeName": "gemini",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "llm/openai.node.ts",
+      "category": "llm",
+      "nodeName": "openai",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "llm/openrouter.node.ts",
+      "category": "llm",
+      "nodeName": "openrouter",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "logic/condition.node.ts",
+      "category": "logic",
+      "nodeName": "condition",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "logic/loop.node.ts",
+      "category": "logic",
+      "nodeName": "loop",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "productivity/google-sheets.node.ts",
+      "category": "productivity",
+      "nodeName": "google-sheets",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"google-sheets\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/database-trigger.node.ts",
+      "category": "triggers",
+      "nodeName": "database-trigger",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"database-trigger\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/email-trigger.node.ts",
+      "category": "triggers",
+      "nodeName": "email-trigger",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"email-trigger\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/error-trigger.node.ts",
+      "category": "triggers",
+      "nodeName": "error-trigger",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"error-trigger\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/file-trigger.node.ts",
+      "category": "triggers",
+      "nodeName": "file-trigger",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-trigger\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/file-watch.node.ts",
+      "category": "triggers",
+      "nodeName": "file-watch",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"file-watch\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/form-submit.node.ts",
+      "category": "triggers",
+      "nodeName": "form-submit",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"form-submit\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "triggers/manual-trigger.node.ts",
+      "category": "triggers",
+      "nodeName": "manual-trigger",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"manual\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utilities/data-processor-enhanced.node.ts",
+      "category": "utilities",
+      "nodeName": "data-processor-enhanced",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-processor-enhanced\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utilities/data-transform.node.ts",
+      "category": "utilities",
+      "nodeName": "data-transform",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-transform\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utility/data-converter.node.ts",
+      "category": "utility",
+      "nodeName": "data-converter",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"data-converter\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utility/filter.node.ts",
+      "category": "utility",
+      "nodeName": "filter",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "utility/image-resize.node.ts",
+      "category": "utility",
+      "nodeName": "image-resize",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        },
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"image-resize\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utility/logger.node.ts",
+      "category": "utility",
+      "nodeName": "logger",
+      "issues": [
+        {
+          "type": "VALIDATION",
+          "severity": "MEDIUM",
+          "message": "Node has required parameters but may lack validation in execute()"
+        }
+      ]
+    },
+    {
+      "file": "utility/math.node.ts",
+      "category": "utility",
+      "nodeName": "math",
+      "issues": [
+        {
+          "type": "DURATION",
+          "severity": "LOW",
+          "message": "Node may not return duration in result"
+        }
+      ]
+    },
+    {
+      "file": "utility/url-parser.node.ts",
+      "category": "utility",
+      "nodeName": "url-parser",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"url-parser\" may not match naming convention"
+        }
+      ]
+    },
+    {
+      "file": "utility/xml-parser.node.ts",
+      "category": "utility",
+      "nodeName": "xml-parser",
+      "issues": [
+        {
+          "type": "ID_CONSISTENCY",
+          "severity": "LOW",
+          "message": "Node ID \"xml-parser\" may not match naming convention"
+        }
+      ]
+    }
+  ]
+}
