@@ -1,4 +1,4 @@
-import { NodeDefinition, NodeType } from '../../utils/types';
+import { NodeDefinition, NodeType } from '@rex/shared';
 const logger = require("../../utils/logger");
 import * as fs from 'fs';
 import * as path from 'path';
