@@ -1,4 +1,4 @@
-import { Webhook, WebhookEvent, WebhookPayload } from '../../utils/types';
+import { Webhook, WebhookEvent, WebhookPayload } from '@rex/shared';
 import { logger } from "../../utils/logger";
 import { prisma } from '../../db/prisma';
 import { queueService } from '../queue/queue';
