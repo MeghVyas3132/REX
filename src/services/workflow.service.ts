@@ -1,9 +1,10 @@
 import { prisma } from '../db/prisma';
-import { Workflow, WorkflowRun, WorkflowNode, WorkflowEdge } from '../utils/types';
+import { Workflow, WorkflowRun, WorkflowNode, WorkflowEdge } from '@rex/shared';
 import { logger } from '../utils/logger';
 import { WorkflowEngine } from '../core/engine/workflow-engine';
 import { NotFoundError, ValidationError } from '../utils/error-handler';
 import { cronScheduler } from '../core/scheduler/cron-scheduler';
+import crypto from 'crypto';
 
 export class WorkflowService {
   private workflowEngine: WorkflowEngine;
@@ -20,9 +21,12 @@ export class WorkflowService {
       // Use default userId if not provided (for unauthenticated users)
       const userId = workflowData.userId || 'default-user';
 
+      // Always generate a proper UUID (Prisma schema requires UUID format)
+      const workflowId = crypto.randomUUID();
+
       const workflow = await prisma.workflow.create({
         data: {
-          id: workflowData.id || `wf_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+          id: workflowId,
           name: workflowData.name!,
           description: workflowData.description || '',
           nodes: (workflowData.nodes as any) || [],
