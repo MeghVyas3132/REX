@@ -1,0 +1,409 @@
+# Extended Branch Synchronization Pipeline
+# Syncs main branch changes to all modular branches
+# 
+# Branch Structure:
+# - main: Complete monolithic codebase
+# - frontend: /frontend directory only
+# - backend: /backend directory only  
+# - engine: /engine directory only (workflow execution engine)
+# - nodes: /nodes directory only (all workflow nodes)
+# - shared: /shared directory only (shared types/utils)
+# - sdk: /sdk directory only (client SDK)
+# - db: /db directory only (database schemas/migrations)
+# - docker: /docker directory only
+# - docs: /docs directory only
+# - scripts: /scripts directory only
+# - tests: /tests directory only
+# - templates: /templates directory only
+
+name: Sync All Branches
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      force_sync:
+        description: 'Force sync all branches'
+        required: false
+        default: 'false'
+
+env:
+  GIT_AUTHOR_NAME: github-actions[bot]
+  GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+  GIT_COMMITTER_NAME: github-actions[bot]
+  GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+
+jobs:
+  # ============================================================================
+  # EXISTING BRANCHES (from original sync-branches.yml)
+  # ============================================================================
+  
+  sync-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync frontend branch
+        run: |
+          if [ -d "frontend" ]; then
+            git subtree split --prefix=frontend -b temp-frontend || true
+            git checkout frontend 2>/dev/null || git checkout -b frontend
+            git reset --hard temp-frontend || echo "No changes to sync"
+            git push origin frontend --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-frontend 2>/dev/null || true
+          else
+            echo "frontend directory does not exist yet, skipping..."
+          fi
+
+  sync-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync backend branch
+        run: |
+          if [ -d "backend" ]; then
+            git subtree split --prefix=backend -b temp-backend || true
+            git checkout backend 2>/dev/null || git checkout -b backend
+            git reset --hard temp-backend || echo "No changes to sync"
+            git push origin backend --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-backend 2>/dev/null || true
+          else
+            echo "backend directory does not exist yet, skipping..."
+          fi
+
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync docs branch
+        run: |
+          if [ -d "docs" ]; then
+            git subtree split --prefix=docs -b temp-docs || true
+            git checkout docs 2>/dev/null || git checkout -b docs
+            git reset --hard temp-docs || echo "No changes to sync"
+            git push origin docs --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-docs 2>/dev/null || true
+          else
+            echo "docs directory does not exist yet, skipping..."
+          fi
+
+  sync-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync scripts branch
+        run: |
+          if [ -d "scripts" ]; then
+            git subtree split --prefix=scripts -b temp-scripts || true
+            git checkout scripts 2>/dev/null || git checkout -b scripts
+            git reset --hard temp-scripts || echo "No changes to sync"
+            git push origin scripts --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-scripts 2>/dev/null || true
+          else
+            echo "scripts directory does not exist yet, skipping..."
+          fi
+
+  sync-templates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync templates branch
+        run: |
+          if [ -d "templates" ]; then
+            git subtree split --prefix=templates -b temp-templates || true
+            git checkout templates 2>/dev/null || git checkout -b templates
+            git reset --hard temp-templates || echo "No changes to sync"
+            git push origin templates --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-templates 2>/dev/null || true
+          else
+            echo "templates directory does not exist yet, skipping..."
+          fi
+
+  # ============================================================================
+  # NEW BRANCHES (for refactored structure)
+  # ============================================================================
+
+  sync-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync engine branch
+        run: |
+          if [ -d "engine" ]; then
+            git subtree split --prefix=engine -b temp-engine || true
+            git checkout engine 2>/dev/null || git checkout -b engine
+            git reset --hard temp-engine || echo "No changes to sync"
+            git push origin engine --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-engine 2>/dev/null || true
+          else
+            echo "engine directory does not exist yet, skipping..."
+          fi
+
+  sync-nodes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync nodes branch
+        run: |
+          if [ -d "nodes" ]; then
+            git subtree split --prefix=nodes -b temp-nodes || true
+            git checkout nodes 2>/dev/null || git checkout -b nodes
+            git reset --hard temp-nodes || echo "No changes to sync"
+            git push origin nodes --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-nodes 2>/dev/null || true
+          else
+            echo "nodes directory does not exist yet, skipping..."
+          fi
+
+  sync-shared:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync shared branch
+        run: |
+          if [ -d "shared" ]; then
+            git subtree split --prefix=shared -b temp-shared || true
+            git checkout shared 2>/dev/null || git checkout -b shared
+            git reset --hard temp-shared || echo "No changes to sync"
+            git push origin shared --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-shared 2>/dev/null || true
+          else
+            echo "shared directory does not exist yet, skipping..."
+          fi
+
+  sync-sdk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync sdk branch
+        run: |
+          if [ -d "sdk" ]; then
+            git subtree split --prefix=sdk -b temp-sdk || true
+            git checkout sdk 2>/dev/null || git checkout -b sdk
+            git reset --hard temp-sdk || echo "No changes to sync"
+            git push origin sdk --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-sdk 2>/dev/null || true
+          else
+            echo "sdk directory does not exist yet, skipping..."
+          fi
+
+  sync-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync db branch
+        run: |
+          if [ -d "db" ]; then
+            git subtree split --prefix=db -b temp-db || true
+            git checkout db 2>/dev/null || git checkout -b db
+            git reset --hard temp-db || echo "No changes to sync"
+            git push origin db --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-db 2>/dev/null || true
+          else
+            echo "db directory does not exist yet, skipping..."
+          fi
+
+  sync-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync docker branch
+        run: |
+          if [ -d "docker" ]; then
+            git subtree split --prefix=docker -b temp-docker || true
+            git checkout docker 2>/dev/null || git checkout -b docker
+            git reset --hard temp-docker || echo "No changes to sync"
+            git push origin docker --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-docker 2>/dev/null || true
+          else
+            echo "docker directory does not exist yet, skipping..."
+          fi
+
+  sync-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ env.GIT_AUTHOR_NAME }}"
+          git config user.email "${{ env.GIT_AUTHOR_EMAIL }}"
+
+      - name: Sync tests branch
+        run: |
+          if [ -d "tests" ]; then
+            git subtree split --prefix=tests -b temp-tests || true
+            git checkout tests 2>/dev/null || git checkout -b tests
+            git reset --hard temp-tests || echo "No changes to sync"
+            git push origin tests --force || echo "Push failed or no changes"
+            git checkout main
+            git branch -D temp-tests 2>/dev/null || true
+          else
+            echo "tests directory does not exist yet, skipping..."
+          fi
+
+  # ============================================================================
+  # SUMMARY JOB
+  # ============================================================================
+
+  sync-summary:
+    runs-on: ubuntu-latest
+    needs: 
+      - sync-frontend
+      - sync-backend
+      - sync-docs
+      - sync-scripts
+      - sync-templates
+      - sync-engine
+      - sync-nodes
+      - sync-shared
+      - sync-sdk
+      - sync-db
+      - sync-docker
+      - sync-tests
+    if: always()
+    steps:
+      - name: Summary
+        run: |
+          echo "## Branch Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| frontend | ${{ needs.sync-frontend.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| backend | ${{ needs.sync-backend.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| docs | ${{ needs.sync-docs.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| scripts | ${{ needs.sync-scripts.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| templates | ${{ needs.sync-templates.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| engine | ${{ needs.sync-engine.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| nodes | ${{ needs.sync-nodes.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| shared | ${{ needs.sync-shared.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| sdk | ${{ needs.sync-sdk.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| db | ${{ needs.sync-db.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| docker | ${{ needs.sync-docker.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| tests | ${{ needs.sync-tests.result }} |" >> $GITHUB_STEP_SUMMARY

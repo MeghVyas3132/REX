@@ -11,27 +11,24 @@ export function getPool(): Pool {
       logger.info('[DB] No DATABASE_URL found; using default connection');
       // Use default connection for local development
       pool = new Pool({
-        host: 'localhost',
-        port: 5432,
-        database: 'workflow_studio',
-        user: 'sahinbegum',
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT || '5432'),
+        database: process.env.DB_NAME || 'workflow_studio',
+        user: process.env.DB_USER || 'postgres',
+        password: process.env.DB_PASSWORD || 'postgres',
         ssl: false,
         max: 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
       });
     } else {
-      // Parse connection string and ensure correct user
-      const url = new URL(connectionString);
-      if (url.username === 'postgres') {
-        url.username = 'sahinbegum';
-        const logger = require('../utils/logger');
-        logger.info('[DB] Updated connection string to use correct user');
-      }
+      const logger = require('../utils/logger');
+      logger.info('[DB] Using DATABASE_URL from environment');
       
       pool = new Pool({
-        connectionString: url.toString(),
-        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        connectionString: connectionString,
+        ssl: connectionString.includes('sslmode=disable') ? false : 
+             (process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false),
         max: 20,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
