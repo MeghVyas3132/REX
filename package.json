@@ -1,0 +1,68 @@
+{
+  "name": "rex",
+  "version": "1.0.0",
+  "description": "REX - Workflow Automation Platform",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "shared",
+    "engine",
+    "nodes",
+    "sdk",
+    "db",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:shared": "npm run build -w shared",
+    "build:engine": "npm run build -w engine",
+    "build:nodes": "npm run build -w nodes",
+    "build:backend": "npm run build -w backend",
+    "build:frontend": "npm run build -w frontend",
+    
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test --workspaces --if-present",
+    "test:integration": "cd tests && npm run integration",
+    "test:e2e": "cd tests && npm run e2e",
+    
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    
+    "docker:dev": "docker compose -f docker/compose/docker-compose.yml -f docker/compose/docker-compose.dev.yml up",
+    "docker:prod": "docker compose -f docker/compose/docker-compose.yml -f docker/compose/docker-compose.prod.yml up -d",
+    "docker:down": "docker compose -f docker/compose/docker-compose.yml down",
+    
+    "db:migrate": "npm run migrate -w db",
+    "db:seed": "npm run seed -w db",
+    "db:studio": "npm run studio -w db",
+    
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^9.0.0",
+    "turbo": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/rex.git"
+  },
+  "keywords": [
+    "workflow",
+    "automation",
+    "n8n",
+    "zapier",
+    "integration"
+  ],
+  "author": "REX Team",
+  "license": "MIT"
+}
