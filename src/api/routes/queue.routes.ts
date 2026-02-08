@@ -1,5 +1,5 @@
 import express from 'express';
-import { queueService } from '../../core/queue/queue-service';
+import { queueService } from '../../core/queue/queue';
 const logger = require('../../utils/logger');
 
 const router = express.Router();
