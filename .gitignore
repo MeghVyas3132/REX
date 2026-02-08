@@ -3,8 +3,8 @@ node_modules/
 
 # Environment and secrets
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 *.pem
 
 # Build outputs
@@ -17,8 +17,29 @@ out/
 # Logs and temp
 *.log
 npm-debug.log*
-.DS_Store
-Thumbs.db
+backend/temp/*
+!backend/temp/.gitkeep
+
+# Uploads (user data — never commit)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Audit reports (regenerable via scripts/audit-nodes.js)
+**/node_audit_report*.json
+**/NODE_AUDIT_*.json
+**/NODE_AUDIT_*.txt
+
+# Test output dumps
+**/*_test_results*
+**/*_results.txt
+**/*.test-result.*
+frontend/test-results/
+
+# Vite artifacts
+*.timestamp-*
+
+# Lock files — keep only npm (package-lock.json)
+bun.lockb
 
 # IDE
 .idea/
@@ -28,3 +49,4 @@ Thumbs.db
 
 # OS
 .DS_Store
+Thumbs.db

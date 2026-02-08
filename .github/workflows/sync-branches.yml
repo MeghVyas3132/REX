@@ -1,0 +1,181 @@
+###############################################################################
+# REX -- Branch Segregation Pipeline
+# ---------------------------------------------------------------------------
+# Triggers on every push to `main` and synchronises dedicated micro-service
+# branches.  Each branch contains ONLY the contents of its folder (no nesting).
+#
+# Mapping:
+#   main  (monolithic, everything)
+#     ├── backend/   ->  branch: backend
+#     ├── frontend/  ->  branch: frontend
+#     ├── docs/      ->  branch: docs
+#     ├── scripts/   ->  branch: scripts
+#     └── templates/ ->  branch: templates
+#
+# How it works:
+#   1. Detect which top-level folders changed compared to the previous commit.
+#   2. For every changed folder, use `git subtree split` to extract that
+#      folder into a temporary branch, then force-push it to the matching
+#      remote branch.
+#   3. If a dedicated branch doesn't exist yet, it is created automatically.
+###############################################################################
+
+name: Sync Micro-Service Branches
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  detect-changes:
+    name: Detect Changed Folders
+    runs-on: ubuntu-latest
+    outputs:
+      backend:   ${{ steps.changes.outputs.backend }}
+      frontend:  ${{ steps.changes.outputs.frontend }}
+      docs:      ${{ steps.changes.outputs.docs }}
+      scripts:   ${{ steps.changes.outputs.scripts }}
+      templates: ${{ steps.changes.outputs.templates }}
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # need full history for subtree split
+
+      - name: Determine changed folders
+        id: changes
+        run: |
+          # Compare with the previous commit; on the very first push fall back
+          # to treating everything as changed.
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            CHANGED=$(git diff --name-only HEAD~1 HEAD)
+          else
+            CHANGED=$(git ls-tree -r --name-only HEAD)
+          fi
+
+          echo "--- changed files ---"
+          echo "$CHANGED"
+          echo "---------------------"
+
+          check_folder() {
+            local folder="$1"
+            if echo "$CHANGED" | grep -q "^${folder}/"; then
+              echo "${folder}=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "${folder}=false" >> "$GITHUB_OUTPUT"
+            fi
+          }
+
+          check_folder backend
+          check_folder frontend
+          check_folder docs
+          check_folder scripts
+          check_folder templates
+
+  # ---- one job per micro-service branch --------------------------------
+
+  sync-backend:
+    name: "Sync -> backend branch"
+    needs: detect-changes
+    if: needs.detect-changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push backend subtree
+        run: |
+          git config user.name  "MeghVyas3132"
+          git config user.email "megh.vyas@yahoo.com"
+
+          # Split the backend/ folder into a temporary branch
+          SPLIT_SHA=$(git subtree split --prefix=backend -b temp-backend)
+
+          # Force-push to the remote `backend` branch
+          git push origin temp-backend:backend --force
+
+          echo "backend branch updated to $SPLIT_SHA"
+
+  sync-frontend:
+    name: "Sync -> frontend branch"
+    needs: detect-changes
+    if: needs.detect-changes.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push frontend subtree
+        run: |
+          git config user.name  "MeghVyas3132"
+          git config user.email "megh.vyas@yahoo.com"
+
+          SPLIT_SHA=$(git subtree split --prefix=frontend -b temp-frontend)
+
+          git push origin temp-frontend:frontend --force
+
+          echo "frontend branch updated to $SPLIT_SHA"
+
+  sync-docs:
+    name: "Sync -> docs branch"
+    needs: detect-changes
+    if: needs.detect-changes.outputs.docs == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push docs subtree
+        run: |
+          git config user.name  "MeghVyas3132"
+          git config user.email "megh.vyas@yahoo.com"
+
+          SPLIT_SHA=$(git subtree split --prefix=docs -b temp-docs)
+
+          git push origin temp-docs:docs --force
+
+          echo "docs branch updated to $SPLIT_SHA"
+
+  sync-scripts:
+    name: "Sync -> scripts branch"
+    needs: detect-changes
+    if: needs.detect-changes.outputs.scripts == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push scripts subtree
+        run: |
+          git config user.name  "MeghVyas3132"
+          git config user.email "megh.vyas@yahoo.com"
+
+          SPLIT_SHA=$(git subtree split --prefix=scripts -b temp-scripts)
+
+          git push origin temp-scripts:scripts --force
+
+          echo "scripts branch updated to $SPLIT_SHA"
+
+  sync-templates:
+    name: "Sync -> templates branch"
+    needs: detect-changes
+    if: needs.detect-changes.outputs.templates == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push templates subtree
+        run: |
+          git config user.name  "MeghVyas3132"
+          git config user.email "megh.vyas@yahoo.com"
+
+          SPLIT_SHA=$(git subtree split --prefix=templates -b temp-templates)
+
+          git push origin temp-templates:templates --force
+
+          echo "templates branch updated to $SPLIT_SHA"
