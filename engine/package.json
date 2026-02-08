@@ -1,0 +1,55 @@
+{
+  "name": "@rex/engine",
+  "version": "1.0.0",
+  "description": "Workflow execution engine for REX automation platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./executor": {
+      "types": "./dist/executor/index.d.ts",
+      "import": "./dist/executor/index.js"
+    },
+    "./graph": {
+      "types": "./dist/graph/index.d.ts",
+      "import": "./dist/graph/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@rex/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/rex.git",
+    "directory": "engine"
+  },
+  "keywords": [
+    "rex",
+    "workflow",
+    "automation",
+    "engine"
+  ],
+  "license": "MIT"
+}
