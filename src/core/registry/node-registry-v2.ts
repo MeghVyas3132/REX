@@ -3,7 +3,7 @@
  * This allows gradual migration while maintaining backward compatibility
  */
 
-import { NodeDefinition, NodeType } from '../../utils/types';
+import { NodeDefinition, NodeType } from '@rex/shared';
 import { INodeType, INodeTypeDescription, IVersionedNodeType } from '../../types/n8n-types';
 import { convertNodeDefinitionToDescription, createNodeAdapter } from '../../utils/node-adapter';
 const logger = require("../../utils/logger");
