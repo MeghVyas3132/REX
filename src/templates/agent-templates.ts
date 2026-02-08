@@ -1,4 +1,4 @@
-import { Workflow, WorkflowNode, WorkflowEdge } from '../utils/types';
+import { Workflow, WorkflowNode, WorkflowEdge } from '@rex/shared';
 
 export interface AgentTemplate {
   id: string;
