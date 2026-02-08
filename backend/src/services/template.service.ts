@@ -1,5 +1,5 @@
 import { agentTemplates, getTemplateById, getTemplatesByCategory, getTemplatesByDifficulty, searchTemplates, AgentTemplate } from '../templates/agent-templates';
-import { Workflow, WorkflowNode, WorkflowEdge } from '../utils/types';
+import { Workflow, WorkflowNode, WorkflowEdge } from '@rex/shared';
 const logger = require('../utils/logger');
 
 export class TemplateService {
