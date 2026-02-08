@@ -1,4 +1,4 @@
-import { WorkflowNode, ExecutionContext, ExecutionResult } from '../../utils/types';
+import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
 import { createMemoryManager, MemoryManager } from './memory-manager';
 const logger = require("../../utils/logger");
 
