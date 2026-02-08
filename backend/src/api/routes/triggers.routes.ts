@@ -1,9 +1,7 @@
 import { Router } from 'express';
 import { optionalAuth } from '../middlewares/auth.middleware';
 import { validateBody, validateQuery, commonSchemas } from '../../utils/validators';
-import { nodeRegistry } from '../../nodes/node-registry';
-import { FileTriggerNode } from '../../nodes/triggers/file-trigger.node';
-import { DatabaseTriggerNode } from '../../nodes/triggers/database-trigger.node';
+import { nodeRegistry, FileTriggerNode, DatabaseTriggerNode } from '@rex/nodes';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import { Client } from 'pg';
