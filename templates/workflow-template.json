@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "file-upload-1",
+      "type": "trigger",
+      "subtype": "file-upload",
+      "name": "File Upload",
+      "data": {
+        "config": {
+          "source": "local",
+          "uploadPath": "./uploads",
+          "allowedTypes": ["text/plain", "text/csv", "application/json"],
+          "maxSize": 10485760,
+          "preserveName": true
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "code-1",
+      "type": "action",
+      "subtype": "code",
+      "name": "Code",
+      "data": {
+        "config": {
+          "language": "javascript",
+          "code": "const fs = require('fs');\nconst filePath = input.filePath || input.fileInfo?.path;\nlet textContent = '';\nif (filePath && fs.existsSync(filePath)) {\n  textContent = fs.readFileSync(filePath, 'utf8');\n} else if (input.fileContent) {\n  textContent = input.fileContent;\n} else if (input.text) {\n  textContent = input.text;\n}\nreturn { text: textContent, filePath: filePath, originalInput: input };",
+          "timeout": 30,
+          "allowImports": true
+        }
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "text-analyzer-1",
+      "type": "action",
+      "subtype": "text-analyzer",
+      "name": "Text Analyzer",
+      "data": {
+        "config": {
+          "apiKey": "your-openai-api-key",
+          "analysisType": "sentiment",
+          "model": "gpt-3.5-turbo",
+          "language": "en",
+          "includeConfidence": true,
+          "includeEntities": false,
+          "includeKeywords": false
+        }
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-1",
+      "source": "file-upload-1",
+      "target": "code-1",
+      "sourceHandle": "output",
+      "targetHandle": "input"
+    },
+    {
+      "id": "edge-2",
+      "source": "code-1",
+      "target": "text-analyzer-1",
+      "sourceHandle": "output",
+      "targetHandle": "input"
+    }
+  ],
+  "input": {
+    "filePath": "./test-files/sample.txt"
+  }
+}
+
