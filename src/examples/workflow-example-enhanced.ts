@@ -6,7 +6,7 @@
  * 2. Data Flow Between Nodes (passing data from one to another)
  */
 
-import { WorkflowNode, WorkflowEdge } from '../utils/types';
+import { WorkflowNode, WorkflowEdge } from '@rex/shared';
 
 // Example workflow: "Process Customer Data with AI"
 export const enhancedWorkflowExample = {
