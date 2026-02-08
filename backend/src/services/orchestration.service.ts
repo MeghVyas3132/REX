@@ -1,4 +1,4 @@
-import { Workflow, WorkflowNode, WorkflowEdge, WorkflowRun, ExecutionContext, ExecutionResult } from '../utils/types';
+import { Workflow, WorkflowNode, WorkflowEdge, WorkflowRun, ExecutionContext, ExecutionResult } from '@rex/shared';
 import { agentOrchestrator, Agent, Task } from '../core/orchestration/agent-orchestrator';
 import { workflowManager, WorkflowExecutionPlan } from '../core/orchestration/workflow-manager';
 import { coordinationService, CoordinationMessage } from '../core/orchestration/coordination-service';
