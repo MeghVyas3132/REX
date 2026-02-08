@@ -10,8 +10,7 @@ import { config } from './config';
 const logger = require("./utils/logger");
 import { testConnection, closePool } from './db/database';
 import { testRedisConnection, closeRedisConnection } from './db/redis';
-import { queueService } from './core/queue/queue-service';
-// import { queueService } from './core/queue/queue';
+import { queueService } from './core/queue/queue';
 import { workerSetup } from './core/queue/worker-setup';
 import { cronScheduler } from './core/scheduler/cron-scheduler';
 import { webhookManager } from './core/webhooks/webhook-manager';
@@ -144,6 +143,16 @@ app.get('/', (req, res) => {
 
 // Health check
 app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    version: process.env.npm_package_version || '1.0.0'
+  });
+});
+
+// Health check (also at /api/health for Docker healthcheck)
+app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
@@ -392,10 +401,13 @@ async function initializeServices(): Promise<void> {
     if (redisConnected) {
       logger.info('Redis connected successfully');
       
-      // Initialize queue service
-      await queueService.initializeQueues();
-      await queueService.startWorkers();
-      logger.info('Queue service started with background workers');
+      // Initialize queue service (if methods exist)
+      try {
+        await queueService.connect();
+        logger.info('Queue service connected');
+      } catch (qErr) {
+        logger.warn('Queue service initialization failed', { error: (qErr as Error).message });
+      }
     } else {
       logger.warn('Redis connection failed - background jobs disabled', { error: 'Redis connection failed' });
     }
@@ -450,18 +462,13 @@ process.on('SIGTERM', async () => {
   logger.info('SIGTERM received, shutting down gracefully');
   
   try {
-    // await cronScheduler.shutdown();
-    // await workerSetup.stopWorkers();
-    // Queue service intentionally disabled in simple mode
     await closePool();
     await closeRedisConnection();
-    await queueService.close();
+    await queueService.disconnect();
     
     logger.info('Server shut down successfully');
-    // Avoid forced exit in dev tooling; let process terminate naturally
   } catch (error) {
     logger.error('Error during shutdown', error as Error);
-    // Avoid forced exit in dev tooling
   }
 });
 
@@ -469,17 +476,13 @@ process.on('SIGINT', async () => {
   logger.info('SIGINT received, shutting down gracefully');
   
   try {
-    // await cronScheduler.shutdown();
-    // Queue service intentionally disabled in simple mode
     await closePool();
     await closeRedisConnection();
-    await queueService.close();
+    await queueService.disconnect();
     
     logger.info('Server shut down successfully');
-    // Avoid forced exit in dev tooling
   } catch (error) {
     logger.error('Error during shutdown', error as Error);
-    // Avoid forced exit in dev tooling
   }
 });
 
