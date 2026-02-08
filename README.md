@@ -68,6 +68,29 @@ Open **http://localhost:5173** and start building workflows.
 
 ## Project Structure
 
+> **Note:** The project is currently undergoing a major refactoring to improve modularity.
+> See [docs/architecture/REFACTORING-PLAN.md](docs/architecture/REFACTORING-PLAN.md) for details.
+
+### Target Architecture (Monorepo)
+
+```
+.
+├── shared/           # @rex/shared - Shared types, utilities, contracts
+├── engine/           # @rex/engine - Node-agnostic workflow execution
+├── nodes/            # @rex/nodes - All workflow nodes (75+ nodes)
+├── sdk/              # @rex/sdk - Client SDK for API access
+├── db/               # @rex/db - Prisma schema, migrations
+├── backend/          # @rex/backend - Express API, services
+├── frontend/         # @rex/frontend - React visual editor
+├── docker/           # Docker configurations
+├── docs/             # Documentation
+├── scripts/          # Utility scripts
+├── tests/            # Centralized test suites
+└── templates/        # Workflow templates
+```
+
+### Current Structure
+
 ```
 .
 ├── backend/          # Express API + workflow engine
@@ -88,7 +111,7 @@ Open **http://localhost:5173** and start building workflows.
 │   ├── integrations/ # Gmail, WhatsApp, OpenRouter guides
 │   ├── guides/       # testing, OAuth setup
 │   └── reference/    # node catalog, env vars
-├── scripts/          # utility scripts (node auditor)
+`├── scripts/          # utility scripts (node auditor)
 └── templates/        # starter workflow JSON files
 ```
 
