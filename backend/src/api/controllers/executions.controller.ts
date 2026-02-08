@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ExecutionService } from '../../services/execution.service';
 import { logger } from "../../utils/logger";
-import { APIResponse, PaginatedResponse } from '../../utils/types';
+import { APIResponse, PaginatedResponse } from '@rex/shared';
 
 export class ExecutionController {
   private executionService: ExecutionService;
