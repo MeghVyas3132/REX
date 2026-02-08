@@ -1,0 +1,35 @@
+{
+  "node": "workflow-studio.whatsapp",
+  "nodeVersion": "2.0.0",
+  "codexVersion": "1.0",
+  "categories": ["Communication"],
+  "subcategories": {
+    "Communication": ["Messaging"]
+  },
+  "resources": {
+    "credentialDocumentation": [
+      {
+        "url": "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started"
+      }
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://developers.facebook.com/docs/whatsapp/cloud-api"
+      }
+    ]
+  },
+  "description": "Send WhatsApp messages and manage media via Meta Business API. Supports text messages, templates, media (images, videos, documents), location sharing, and media management operations.",
+  "features": [
+    "Send text messages",
+    "Send template messages with components",
+    "Send media messages (image, video, audio, document)",
+    "Send location messages",
+    "Upload media to WhatsApp",
+    "Download media from WhatsApp",
+    "Delete media from WhatsApp",
+    "Dynamic phone number and template selection",
+    "Phone number sanitization",
+    "Comprehensive error handling"
+  ]
+}
+
