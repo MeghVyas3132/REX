@@ -1,4 +1,4 @@
-import { Workflow, WorkflowNode, WorkflowEdge, WorkflowRun, ExecutionContext, ExecutionResult } from '../../utils/types';
+import { Workflow, WorkflowNode, WorkflowEdge, WorkflowRun, ExecutionContext, ExecutionResult } from '@rex/shared';
 const logger = require("../../utils/logger");
 
 export interface WorkflowExecutionPlan {

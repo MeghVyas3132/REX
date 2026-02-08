@@ -1,4 +1,4 @@
-import { WorkflowNode, ExecutionContext, ExecutionResult } from '../../utils/types';
+import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
 const logger = require("../../utils/logger");
 
 export interface Agent {
