@@ -1,7 +1,7 @@
 {
-  "name": "workflow-studio-backend",
+  "name": "@rex/backend",
   "version": "1.0.0",
-  "description": "Production-ready backend for AI Agent Workflow Studio",
+  "description": "Production-ready backend for REX Workflow Automation",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -20,6 +20,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@rex/shared": "file:../shared",
+    "@rex/engine": "file:../engine",
+    "@rex/nodes": "file:../nodes",
     "@aws-sdk/client-s3": "^3.913.0",
     "@prisma/client": "^5.22.0",
     "@slack/web-api": "^6.9.0",
