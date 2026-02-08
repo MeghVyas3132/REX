@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { webhookManager } from '../../core/webhooks/webhook-manager';
 import { logger } from "../../utils/logger";
-import { APIResponse, PaginatedResponse } from '../../utils/types';
+import { APIResponse, PaginatedResponse } from '@rex/shared';
 
 export class WebhookController {
   async listWebhooks(req: Request, res: Response): Promise<void> {
