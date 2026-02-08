@@ -63,7 +63,11 @@ jobs:
 
           check_folder() {
             local folder="$1"
-            if echo "$CHANGED" | grep -q "^${folder}/"; then
+            # If the target branch does not exist yet on the remote, always sync
+            if ! git ls-remote --exit-code --heads origin "$folder" >/dev/null 2>&1; then
+              echo "Branch '$folder' does not exist on remote -- marking as changed"
+              echo "${folder}=true" >> "$GITHUB_OUTPUT"
+            elif echo "$CHANGED" | grep -q "^${folder}/"; then
               echo "${folder}=true" >> "$GITHUB_OUTPUT"
             else
               echo "${folder}=false" >> "$GITHUB_OUTPUT"
