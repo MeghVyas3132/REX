@@ -1,5 +1,5 @@
 import { prisma } from '../db/prisma';
-import { WorkflowRun } from '../utils/types';
+import { WorkflowRun } from '@rex/shared';
 import { logger } from "../utils/logger";
 import { NotFoundError } from '../utils/error-handler';
 
