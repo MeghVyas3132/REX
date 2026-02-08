@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { WorkflowService } from '../../services/workflow.service';
 import { WorkflowEngine } from '../../core/engine/workflow-engine';
-import { Workflow } from '../../utils/types';
+import { Workflow } from '@rex/shared';
 import { logger } from "../../utils/logger";
-import { APIResponse, PaginatedResponse } from '../../utils/types';
+import { APIResponse, PaginatedResponse } from '@rex/shared';
 
 import ExecutionManager from '../../services/execution-manager.service';
 
