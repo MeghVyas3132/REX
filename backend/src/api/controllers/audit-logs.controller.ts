@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { logger } from '../../utils/logger';
-import { APIResponse } from '../../utils/types';
+import { APIResponse } from '@rex/shared';
 import { auditLogService } from '../../services/audit-logs.service';
 
 export class AuditLogsController {
