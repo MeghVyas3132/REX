@@ -1,4 +1,4 @@
-import { ExecutionContext, ExecutionResult } from '../../utils/types';
+import { ExecutionContext, ExecutionResult } from '@rex/shared';
 const logger = require("../../utils/logger");
 
 export interface CoordinationMessage {
