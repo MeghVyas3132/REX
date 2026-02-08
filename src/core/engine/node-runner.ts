@@ -1,4 +1,4 @@
-import { WorkflowNode, ExecutionContext, ExecutionResult, NodeType } from '../../utils/types';
+import { WorkflowNode, ExecutionContext, ExecutionResult, NodeType } from '@rex/shared';
 const logger = require("../../utils/logger");
 import { nodeRegistry } from '../registry/node-registry';
 import NodeRegistryV2 from '../registry/node-registry-v2';
