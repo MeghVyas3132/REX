@@ -16,7 +16,7 @@ import {
 	WorkflowNode,
 	ExecutionContext,
 	ExecutionResult,
-} from '../../utils/types';
+} from '@rex/shared';
 const logger = require("../../utils/logger");
 
 /**
