@@ -5,7 +5,6 @@
     "module": "commonjs",
     "lib": ["ES2020", "DOM"],
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -29,24 +28,34 @@
     "exactOptionalPropertyTypes": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": [],
-    "baseUrl": "./src",
+    "types": ["node"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
-      "@/api/*": ["api/*"],
-      "@/core/*": ["core/*"],
-      "@/nodes/*": ["nodes/*"],
-      "@/services/*": ["services/*"],
-      "@/db/*": ["db/*"],
-      "@/utils/*": ["utils/*"]
+      "@/*": ["src/*"],
+      "@/api/*": ["src/api/*"],
+      "@/core/*": ["src/core/*"],
+      "@/services/*": ["src/services/*"],
+      "@/db/*": ["src/db/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@rex/shared": ["../shared/types/index"],
+      "@rex/shared/*": ["../shared/*"],
+      "@rex/engine": ["../engine/index"],
+      "@rex/engine/*": ["../engine/*"],
+      "@rex/nodes": ["../nodes/index"],
+      "@rex/nodes/*": ["../nodes/*"]
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "../shared/**/*.ts",
+    "../nodes/**/*.ts",
+    "../engine/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
+    "**/node_modules/**",
+    "**/dist/**",
     "**/*.test.ts",
     "**/*.spec.ts",
     "**/test/**",
