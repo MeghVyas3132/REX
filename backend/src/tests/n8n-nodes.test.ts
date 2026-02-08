@@ -7,7 +7,7 @@ import NodeRegistryV2 from '../core/registry/node-registry-v2';
 import { nodeRegistry } from '../core/registry/node-registry';
 import { nodeRegistryHelper } from '../core/registry/node-registry-helper';
 import { N8nExecutionAdapter } from '../core/engine/n8n-execution-adapter';
-import { WorkflowNode, ExecutionContext } from '../utils/types';
+import { WorkflowNode, ExecutionContext } from '@rex/shared';
 
 describe('n8n Node Integration Tests', () => {
   let nodeRegistryV2: NodeRegistryV2;
