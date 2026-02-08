@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { optionalAuth } from '../middlewares/auth.middleware';
-import { nodeRegistry } from '../../nodes/node-registry';
+import { nodeRegistry } from '@rex/nodes';
 import { logger } from '../../utils/logger';
 
 const router = Router();
