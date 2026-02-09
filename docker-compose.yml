@@ -40,8 +40,8 @@ services:
   # Backend API
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/backend/Dockerfile
     container_name: rex-backend
     env_file:
       - ./backend/.env
