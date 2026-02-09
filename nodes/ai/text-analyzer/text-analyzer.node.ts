@@ -1,8 +1,7 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
 import fs from 'fs/promises';
 import path from 'path';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 export class TextAnalyzerNode {
   getNodeDefinition() {
