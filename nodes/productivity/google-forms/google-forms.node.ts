@@ -1,6 +1,5 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 // Google Forms API integration
 export class GoogleFormsNode {

@@ -1,6 +1,5 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 // Google Sheets (v4) via REST; supports OAuth via oauthService or explicit accessToken
 export class GoogleSheetsNode {
