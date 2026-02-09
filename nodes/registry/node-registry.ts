@@ -8,7 +8,7 @@ import type {
   ExecutionContext, 
   ExecutionResult,
   NodeDefinition 
-} from '../../shared/types/index.js';
+} from '../../shared/types/index';
 
 /**
  * Interface that all node executors must implement
