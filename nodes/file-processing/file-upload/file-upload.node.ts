@@ -2,7 +2,13 @@ import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
-import { logger } from '../../utils/logger';
+
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[FileUpload] ${msg}`, meta ?? ''),
+  warn: (msg: string, meta?: any) => console.warn(`[FileUpload] ${msg}`, meta ?? ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[FileUpload] ${msg}`, err ?? '', meta ?? ''),
+  debug: (msg: string, meta?: any) => {},
+};
 
 export class FileUploadNode {
   getNodeDefinition() {

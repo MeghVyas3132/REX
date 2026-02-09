@@ -1,7 +1,14 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-import { logger } from '../../utils/logger';
 import fs from 'fs/promises';
 import path from 'path';
+
+// Standalone logger — nodes must not depend on backend internals
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[DataCleaning] ${msg}`, meta ?? ''),
+  warn: (msg: string, meta?: any) => console.warn(`[DataCleaning] ${msg}`, meta ?? ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[DataCleaning] ${msg}`, err ?? '', meta ?? ''),
+  debug: (msg: string, meta?: any) => {},
+};
 
 export class DataCleaningNode {
   getNodeDefinition() {

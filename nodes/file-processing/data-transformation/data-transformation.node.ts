@@ -1,5 +1,11 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-import { logger } from '../../utils/logger';
+
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[DataTransformation] ${msg}`, meta ?? ''),
+  warn: (msg: string, meta?: any) => console.warn(`[DataTransformation] ${msg}`, meta ?? ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[DataTransformation] ${msg}`, err ?? '', meta ?? ''),
+  debug: (msg: string, meta?: any) => {},
+};
 
 export class DataTransformationNode {
   getNodeDefinition() {

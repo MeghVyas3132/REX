@@ -1,7 +1,13 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-import { logger } from '../../utils/logger';
 import fs from 'fs/promises';
 import path from 'path';
+
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[FileExport] ${msg}`, meta ?? ''),
+  warn: (msg: string, meta?: any) => console.warn(`[FileExport] ${msg}`, meta ?? ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[FileExport] ${msg}`, err ?? '', meta ?? ''),
+  debug: (msg: string, meta?: any) => {},
+};
 // xlsx is already in package.json; import lazily to avoid startup cost
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const XLSX = require('xlsx');
