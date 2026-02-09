@@ -597,7 +597,6 @@ export class WorkflowController {
         // Create workflow run record
         workflowRun = await prisma.workflowRun.create({
           data: {
-            id: runId || `run_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
             workflowId: dbWorkflow.id,
             status: 'running',
             input: initialInput,
@@ -750,7 +749,7 @@ export class WorkflowController {
       }
 
       // Use node registry directly for better performance
-      const { nodeRegistry } = await import('../../nodes/node-registry');
+      const { nodeRegistry } = await import('../../core/registry/node-registry');
       
       // Get node executor
       const executor = nodeRegistry.getNodeExecutor(nodeType);
@@ -845,7 +844,7 @@ export class WorkflowController {
       }
 
       // Use node registry directly
-      const { nodeRegistry } = await import('../../nodes/node-registry');
+      const { nodeRegistry } = await import('../../core/registry/node-registry');
       
       // Get node definition
       const definition = nodeRegistry.getNodeDefinition(nodeType);
@@ -911,7 +910,7 @@ export class WorkflowController {
       }
 
       // Use node registry directly
-      const { nodeRegistry } = await import('../../nodes/node-registry');
+      const { nodeRegistry } = await import('../../core/registry/node-registry');
       
       const definition = nodeRegistry.getNodeDefinition(nodeType);
       if (!definition) {

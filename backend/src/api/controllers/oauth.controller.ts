@@ -8,7 +8,12 @@ export class OAuthController {
   async initiateGoogleAuth(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({
+          success: false,
+          error: 'OAuth service not configured',
+          message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.'
+        });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -43,7 +48,8 @@ export class OAuthController {
   async handleGoogleCallback(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.' });
+        return;
       }
 
       const { code, state, error, error_description } = req.query;
@@ -162,7 +168,8 @@ export class OAuthController {
   async initiateMicrosoftAuth(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set MICROSOFT_CLIENT_ID and MICROSOFT_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', message: 'Please set MICROSOFT_CLIENT_ID and MICROSOFT_CLIENT_SECRET environment variables.' });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -197,7 +204,8 @@ export class OAuthController {
   async handleMicrosoftCallback(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured');
+        res.status(503).json({ success: false, error: 'OAuth service not configured' });
+        return;
       }
 
       const code = req.query.code as string;
@@ -275,7 +283,8 @@ export class OAuthController {
   async refreshGoogleTokens(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.' });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -313,7 +322,8 @@ export class OAuthController {
   async getAccessToken(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.' });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -343,7 +353,13 @@ export class OAuthController {
   async getConnectionStatus(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({
+          success: false,
+          error: 'OAuth service not configured',
+          message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.',
+          status: { connected: false, configured: false }
+        });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -372,7 +388,8 @@ export class OAuthController {
   async revokeConnection(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', message: 'Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.' });
+        return;
       }
 
       const userId = (req as any).user?.id;
@@ -406,7 +423,8 @@ export class OAuthController {
   async listConnections(req: Request, res: Response): Promise<void> {
     try {
       if (!oauthService) {
-        throw new Error('OAuth service not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables.');
+        res.status(503).json({ success: false, error: 'OAuth service not configured', connections: [] });
+        return;
       }
 
       const userId = (req as any).user?.id;
