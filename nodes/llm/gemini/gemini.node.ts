@@ -1,6 +1,5 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 export class GeminiNode {
   getNodeDefinition() {
@@ -114,8 +113,18 @@ export class GeminiNode {
         throw new Error('Google API key is required');
       }
 
-      const model = config.model || 'gemini-pro';
-      const prompt = config.prompt || context.input?.prompt;
+      const rawModel = String(config.model || 'gemini-2.0-flash');
+      // Normalize legacy model names to current Google Gemini API models
+      const MODEL_ALIASES: Record<string, string> = {
+        'gemini-pro': 'gemini-2.0-flash',
+        'gemini-1.0-pro': 'gemini-2.0-flash',
+        'gemini-1.5-pro': 'gemini-2.5-flash-preview-05-20',
+        'gemini-1.5-flash': 'gemini-2.0-flash',
+      };
+      const model = MODEL_ALIASES[rawModel] || rawModel;
+
+      // Support both "userPrompt" (frontend config panel) and "prompt" (node schema / context input)
+      const prompt = config.userPrompt || config.prompt || context.input?.userPrompt || context.input?.prompt;
       const temperature = config.temperature || 0.7;
       const maxTokens = config.maxTokens || 1000;
 
@@ -126,12 +135,14 @@ export class GeminiNode {
       logger.info('Making Gemini API call', {
         nodeId: node.id,
         model,
+        requestedModel: rawModel,
         runId: context.runId
       });
 
-      // Prepare the request
-      const requestBody = {
+      // Prepare the request body
+      const requestBody: any = {
         contents: [{
+          role: 'user',
           parts: [{
             text: prompt
           }]
@@ -142,14 +153,16 @@ export class GeminiNode {
         }
       };
 
-      // Add system prompt if provided
+      // Add system instruction if provided (proper Gemini API field)
       if (config.systemPrompt) {
-        requestBody.contents[0].parts.unshift({
-          text: `System: ${config.systemPrompt}`
-        });
+        requestBody.systemInstruction = {
+          parts: [{ text: config.systemPrompt }]
+        };
       }
 
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
+      // Use v1beta for all current Gemini models
+      const apiVersion = 'v1beta';
+      const response = await fetch(`https://generativelanguage.googleapis.com/${apiVersion}/models/${model}:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
