@@ -1,8 +1,7 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
 import { DateTime } from 'luxon';
 import { simpleParser } from 'mailparser';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 interface GmailTriggerFilters {
   includeSpamTrash?: boolean;

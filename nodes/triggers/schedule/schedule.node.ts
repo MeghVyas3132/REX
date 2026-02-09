@@ -1,6 +1,27 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-import logger from '../../utils/logger';
-import { cronScheduler } from '../../core/scheduler/cron-scheduler';
+
+// Inline logger (no external dependency)
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[INFO] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[ERROR] ${msg}`, err || '', meta ? JSON.stringify(meta) : ''),
+  warn: (msg: string, meta?: any) => console.warn(`[WARN] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  debug: (msg: string, meta?: any) => console.debug(`[DEBUG] ${msg}`, meta ? JSON.stringify(meta) : ''),
+};
+
+// Lazy-load cronScheduler from backend if available (graceful fallback)
+let _cronScheduler: any = null;
+function getCronScheduler(): any {
+  if (_cronScheduler === undefined) return null;
+  if (_cronScheduler) return _cronScheduler;
+  try {
+    // When loaded from backend, the scheduler is available at this path
+    _cronScheduler = require('../../../backend/src/core/scheduler/cron-scheduler').cronScheduler
+      || require('../../core/scheduler/cron-scheduler').cronScheduler;
+  } catch {
+    _cronScheduler = undefined; // mark as unavailable
+  }
+  return _cronScheduler || null;
+}
 
 export class ScheduleNode {
   /**
@@ -332,18 +353,27 @@ export class ScheduleNode {
       // This will schedule the workflow to run automatically at the specified intervals
       if (finalCron && context.workflowId) {
         try {
-          await cronScheduler.scheduleWorkflow(
-            context.workflowId,
-            finalCron,
-            timezone || 'UTC'
-          );
-          
-          logger.info('Schedule registered with CronScheduler', {
-            workflowId: context.workflowId,
-            nodeId: node.id,
-            cron: finalCron,
-            timezone: timezone || 'UTC'
-          });
+          const cronScheduler = getCronScheduler();
+          if (cronScheduler) {
+            await cronScheduler.scheduleWorkflow(
+              context.workflowId,
+              finalCron,
+              timezone || 'UTC'
+            );
+            
+            logger.info('Schedule registered with CronScheduler', {
+              workflowId: context.workflowId,
+              nodeId: node.id,
+              cron: finalCron,
+              timezone: timezone || 'UTC'
+            });
+          } else {
+            logger.warn('CronScheduler not available - schedule will not auto-execute', {
+              workflowId: context.workflowId,
+              nodeId: node.id,
+              cron: finalCron,
+            });
+          }
         } catch (scheduleError: any) {
           logger.error('Failed to register schedule with CronScheduler', scheduleError, {
             workflowId: context.workflowId,
