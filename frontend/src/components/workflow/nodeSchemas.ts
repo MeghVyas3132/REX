@@ -2121,10 +2121,10 @@ export const nodeParameterSchemas: Record<string, NodeSchema> = {
   'gemini': {
     title: 'Gemini Configuration',
     fields: [
-      { key: 'config.model', label: 'Model', type: 'string', required: true, placeholder: 'gemini-pro' },
+      { key: 'config.model', label: 'Model', type: 'string', required: true, placeholder: 'gemini-2.0-flash' },
       { key: 'config.apiKey', label: 'API Key', type: 'string', required: true, password: true, placeholder: 'Enter API key...' },
       { key: 'config.systemPrompt', label: 'System Prompt', type: 'textarea', placeholder: 'You are a helpful assistant.' },
-      { key: 'config.prompt', label: 'Prompt', type: 'textarea', placeholder: 'Enter prompt...' },
+      { key: 'config.userPrompt', label: 'User Prompt', type: 'textarea', placeholder: 'Enter prompt...' },
       { key: 'config.temperature', label: 'Temperature', type: 'number', placeholder: '0.7' },
       { key: 'config.maxTokens', label: 'Max Tokens', type: 'number', placeholder: '1000' },
     ],

@@ -3777,15 +3777,17 @@ export const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({
               Model <span className="text-red-500">*</span>
             </Label>
             <Select 
-              value={config.model || 'gemini-1.5-flash'} 
+              value={config.model || 'gemini-2.0-flash'} 
               onValueChange={(value) => setConfig({ ...config, model: value })}
             >
               <SelectTrigger className={getRequiredFieldStatus('model')}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="gemini-1.5-flash">gemini-1.5-flash</SelectItem>
-                <SelectItem value="gemini-1.5-pro">gemini-1.5-pro</SelectItem>
+                <SelectItem value="gemini-2.0-flash">Gemini 2.0 Flash</SelectItem>
+                <SelectItem value="gemini-2.0-flash-lite">Gemini 2.0 Flash-Lite</SelectItem>
+                <SelectItem value="gemini-2.5-flash-preview-05-20">Gemini 2.5 Flash (Preview)</SelectItem>
+                <SelectItem value="gemini-2.5-pro-preview-05-06">Gemini 2.5 Pro (Preview)</SelectItem>
               </SelectContent>
             </Select>
             {isNewNode && !config.model && (
