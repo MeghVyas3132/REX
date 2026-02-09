@@ -2,9 +2,8 @@
   "name": "@rex/nodes",
   "version": "1.0.0",
   "description": "Workflow nodes for REX automation platform",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -15,26 +14,38 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./index.ts",
+      "require": "./index.ts",
+      "import": "./index.ts",
+      "default": "./index.ts"
     },
     "./registry": {
-      "types": "./dist/registry.d.ts",
-      "import": "./dist/registry.js"
+      "types": "./registry/node-registry.ts",
+      "require": "./registry/node-registry.ts",
+      "import": "./registry/node-registry.ts"
     },
     "./*": {
-      "types": "./dist/*/index.d.ts",
-      "import": "./dist/*/index.js"
+      "types": "./*/index.ts",
+      "require": "./*/index.ts",
+      "import": "./*/index.ts"
     }
   },
   "files": [
-    "dist"
+    "**/*.ts",
+    "!**/*.test.ts"
   ],
   "dependencies": {
-    "@rex/shared": "workspace:*"
+    "axios": "^1.7.0",
+    "form-data": "^4.0.0",
+    "luxon": "^3.0.0",
+    "mailparser": "^3.0.0",
+    "node-cron": "^3.0.0",
+    "pg": "^8.0.0",
+    "xlsx": "^0.18.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/node-cron": "^3.0.0",
     "@types/pg": "^8.0.0",
     "typescript": "^5.3.0",
     "vitest": "^1.0.0"
