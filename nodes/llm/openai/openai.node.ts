@@ -1,6 +1,5 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 
 export class OpenAINode {
   getNodeDefinition() {
@@ -99,9 +98,21 @@ export class OpenAINode {
       }
 
       const model = config.model || 'gpt-3.5-turbo';
-      const messages = config.messages || [];
+      let messages: any[] = Array.isArray(config.messages) ? config.messages : [];
       const temperature = config.temperature || 0.7;
       const maxTokens = config.maxTokens || 1000;
+
+      // Support "userPrompt" from frontend config panel alongside "messages"
+      if (messages.length === 0) {
+        const userPrompt = config.userPrompt || config.prompt || context.input?.userPrompt || context.input?.prompt;
+        const systemPrompt = config.systemPrompt || context.input?.systemPrompt;
+        if (systemPrompt) {
+          messages.push({ role: 'system', content: systemPrompt });
+        }
+        if (userPrompt) {
+          messages.push({ role: 'user', content: userPrompt });
+        }
+      }
 
       // Prepare messages
       const formattedMessages = this.formatMessages(messages, context);
