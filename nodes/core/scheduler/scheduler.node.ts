@@ -1,6 +1,5 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult, NodeType } from '@rex/shared';
-// TODO: Replace with proper logger
-const logger = console;
+import { logger } from '../../lib/logger.js';
 import cron from 'node-cron';
 
 export class SchedulerNode {
