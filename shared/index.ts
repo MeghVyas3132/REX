@@ -6,10 +6,10 @@
 export const SHARED_VERSION = '1.0.0';
 
 // Types - all type definitions
-export * from './types/index.js';
+export * from './types/index';
 
 // Future exports (to be added as needed):
-// export * from './interfaces/index.js';
-// export * from './utils/index.js';
-// export * from './constants/index.js';
-// export * from './schemas/index.js';
+// export * from './interfaces/index';
+// export * from './utils/index';
+// export * from './constants/index';
+// export * from './schemas/index';

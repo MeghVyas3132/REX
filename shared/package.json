@@ -2,9 +2,8 @@
   "name": "@rex/shared",
   "version": "1.0.0",
   "description": "Shared types and utilities for REX workflow automation platform",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "main": "types/index.ts",
+  "types": "types/index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -13,17 +12,19 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "types": "./types/index.ts",
+      "require": "./types/index.ts",
+      "import": "./types/index.ts",
+      "default": "./types/index.ts"
     },
     "./types": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.js"
+      "types": "./types/index.ts",
+      "require": "./types/index.ts",
+      "import": "./types/index.ts"
     }
   },
   "files": [
-    "dist"
+    "**/*.ts"
   ],
   "devDependencies": {
     "typescript": "^5.3.0"
