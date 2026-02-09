@@ -13,8 +13,8 @@ export {
   getNode, 
   getAllNodes,
   getNodeDefinitions
-} from './registry/node-registry.js';
-export type { NodeExecutor } from './registry/node-registry.js';
+} from './registry/node-registry';
+export type { NodeExecutor } from './registry/node-registry';
 
 // Re-export shared types for convenience
 export type { 
@@ -25,10 +25,10 @@ export type {
   ExecutionContext, 
   ExecutionResult,
   NodeResult 
-} from '../shared/types/index.js';
+} from '../shared/types/index';
 
 // Node category exports
-export * from './triggers/index.js';
+export * from './triggers/index';
 
 // TODO: Add more category exports as needed
 // export * from './agent/index.js';
