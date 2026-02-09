@@ -1,6 +1,78 @@
 import { WorkflowNode, ExecutionContext, ExecutionResult } from '@rex/shared';
-import logger from '../../utils/logger';
-import { createLLMProvider } from '../../providers/llm';
+
+// Inline logger (no external dependency)
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[INFO] ${msg}`, meta || ''),
+  error: (msg: string, err?: any, meta?: any) => console.error(`[ERROR] ${msg}`, err || '', meta || ''),
+  warn: (msg: string, meta?: any) => console.warn(`[WARN] ${msg}`, meta || ''),
+  debug: (msg: string, meta?: any) => console.debug(`[DEBUG] ${msg}`, meta || ''),
+  externalService: (service: string, method: string, duration: number, success: boolean, meta?: any) =>
+    console.log(`[EXTERNAL] ${service}.${method} ${success ? 'OK' : 'FAIL'} ${duration}ms`, meta || ''),
+};
+
+// Inline LLM provider (self-contained fetch wrapper)
+interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
+
+interface ChatGenerateParams {
+  model: string;
+  messages: ChatMessage[];
+  apiKey?: string;
+  provider?: string;
+}
+
+interface ChatGenerateResult {
+  content: string;
+  raw: any;
+}
+
+function createLLMProvider() {
+  async function chatGenerate({ model, messages, apiKey, provider }: ChatGenerateParams): Promise<ChatGenerateResult> {
+    const isOpenRouter = provider === 'openrouter' || String(model).includes('/');
+    const key = apiKey || (isOpenRouter ? process.env.OPENROUTER_API_KEY : process.env.OPENAI_API_KEY) || '';
+
+    if (!key) {
+      const reason = isOpenRouter ? 'OPENROUTER_API_KEY' : 'OPENAI_API_KEY';
+      throw new Error(`Missing API key: set ${reason} in backend .env`);
+    }
+
+    const url = isOpenRouter
+      ? 'https://openrouter.ai/api/v1/chat/completions'
+      : 'https://api.openai.com/v1/chat/completions';
+
+    const headers: Record<string, string> = isOpenRouter
+      ? {
+          Authorization: `Bearer ${key}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': process.env.OPENROUTER_REFERRER || 'http://localhost',
+          'X-Title': process.env.OPENROUTER_TITLE || 'Workflow Studio',
+        }
+      : {
+          Authorization: `Bearer ${key}`,
+          'Content-Type': 'application/json',
+        };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ model, messages }),
+    });
+
+    let data: any = null;
+    try { data = await response.json(); } catch { data = null; }
+
+    if (!response.ok) {
+      throw new Error(`LLM error ${response.status}: ${JSON.stringify(data)}`);
+    }
+
+    const content = data?.choices?.[0]?.message?.content || '';
+    return { content, raw: data };
+  }
+
+  return { chatGenerate };
+}
 
 export class OpenRouterNode {
   getNodeDefinition() {
