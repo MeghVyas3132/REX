@@ -64,6 +64,10 @@ export class WorkflowService {
 
       return (workflow as unknown) as Workflow;
     } catch (error: any) {
+      // Prisma throws on invalid UUID format — treat as not found
+      if (error?.code === 'P2023' || error?.message?.includes('Inconsistent column data') || error?.message?.includes('invalid input syntax')) {
+        return null;
+      }
       logger.error('Error getting workflow:', error.message || error);
       throw error;
     }
@@ -208,7 +212,6 @@ export class WorkflowService {
       // Create workflow run record with userId
       const workflowRun = await prisma.workflowRun.create({
         data: {
-          id: `run_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
           workflowId,
           status: 'running',
           input,
