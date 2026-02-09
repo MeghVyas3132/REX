@@ -8,7 +8,13 @@ import { WHATSAPP_BASE_URL_V18 } from '../constants';
 import { WhatsAppRequestOptions, MediaUploadResponse, MediaDownloadResponse } from '../types';
 import { whatsappApiRequest } from './GenericFunctions';
 
-const logger = require('../../../../utils/logger');
+// Inline logger (no external dependency)
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[INFO] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  error: (msg: string, meta?: any) => console.error(`[ERROR] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  warn: (msg: string, meta?: any) => console.warn(`[WARN] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  debug: (msg: string, meta?: any) => console.debug(`[DEBUG] ${msg}`, meta ? JSON.stringify(meta) : ''),
+};
 
 /**
  * Get upload form data from binary data

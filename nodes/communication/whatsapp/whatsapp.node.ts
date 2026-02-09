@@ -41,7 +41,13 @@ import { cleanPhoneNumberForWhatsApp } from './utils/PhoneUtils';
 import { getAllMessageFields } from './descriptions/MessageFields';
 import { getAllMediaFields } from './descriptions/MediaFields';
 
-const logger = require('../../../utils/logger');
+// Inline logger (no external dependency)
+const logger = {
+  info: (msg: string, meta?: any) => console.log(`[INFO] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  error: (msg: string, meta?: any) => console.error(`[ERROR] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  warn: (msg: string, meta?: any) => console.warn(`[WARN] ${msg}`, meta ? JSON.stringify(meta) : ''),
+  debug: (msg: string, meta?: any) => console.debug(`[DEBUG] ${msg}`, meta ? JSON.stringify(meta) : ''),
+};
 
 export class WhatsAppNode {
   getNodeDefinition() {
