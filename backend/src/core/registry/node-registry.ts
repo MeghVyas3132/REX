@@ -45,29 +45,23 @@ export class NodeRegistry {
   }
 
   private initializeNodeDirectories(): void {
-    const basePath = path.join(__dirname, '../../nodes');
-    this.nodeDirectories = [
-      path.join(basePath, 'core'),
-      path.join(basePath, 'llm'),
-      path.join(basePath, 'ai'),
-      path.join(basePath, 'integrations'),
-      path.join(basePath, 'data'),
-      path.join(basePath, 'logic'),
-      path.join(basePath, 'triggers'),
-      path.join(basePath, 'utility'),
-      path.join(basePath, 'utilities'),
-      path.join(basePath, 'agent'),
-      path.join(basePath, 'cloud'),
-      path.join(basePath, 'communication'),
-      path.join(basePath, 'finance'),
-      path.join(basePath, 'development'),
-      path.join(basePath, 'sales'),
-      path.join(basePath, 'marketing'),
-      path.join(basePath, 'analytics'),
-      path.join(basePath, 'productivity'),
-      path.join(basePath, 'storage'),
-      path.join(basePath, 'file-processing')
+    // Nodes were moved to the monorepo root /nodes/ directory.
+    // In Docker they live at /nodes/, locally at <repo>/nodes/.
+    // Try Docker path first (/nodes/), then resolve relative from repo root.
+    const dockerPath = '/nodes';
+    const localPath = path.resolve(__dirname, '../../../../nodes');
+    const basePath = fs.existsSync(dockerPath) && fs.existsSync(path.join(dockerPath, 'package.json'))
+      ? dockerPath
+      : localPath;
+
+    const categories = [
+      'core', 'llm', 'ai', 'integrations', 'data', 'logic',
+      'triggers', 'utility', 'utilities', 'agent', 'cloud',
+      'communication', 'finance', 'development', 'sales',
+      'marketing', 'analytics', 'productivity', 'storage',
+      'file-processing'
     ];
+    this.nodeDirectories = categories.map(c => path.join(basePath, c));
     
     // Register memory node
     this.registerMemoryNode();
